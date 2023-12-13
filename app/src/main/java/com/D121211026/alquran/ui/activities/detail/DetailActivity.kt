@@ -27,7 +27,7 @@ import com.D121211026.alquran.data.models.Ayah
 import com.D121211026.alquran.data.models.Surah
 import com.D121211026.alquran.ui.theme.SembarangMoDuluTheme
 
-class QuranDetailActivity : ComponentActivity() {
+class DetailActivity : ComponentActivity() {
 
     private var selectedSurah: Surah? = null
 

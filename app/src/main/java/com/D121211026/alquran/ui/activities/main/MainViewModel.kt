@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface MainUiState {
-    data class Success(val photos: List<Surah>) : MainUiState
+    data class Success(val surah: List<Surah>) : MainUiState
     object Error : MainUiState
     object Loading : MainUiState
 }
@@ -46,8 +46,8 @@ class MainViewModel(private val quranRepository: QuranRepository): ViewModel() {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MyApplication)
-                val nasaRepository = application.container.quranRepository
-                MainViewModel(nasaRepository)
+                val quranRepository = application.container.quranRepository
+                MainViewModel(quranRepository)
             }
         }
     }

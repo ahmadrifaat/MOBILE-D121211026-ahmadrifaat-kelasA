@@ -1,5 +1,6 @@
 package com.D121211026.alquran.ui.activities.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.D121211026.alquran.data.models.Ayah
 import com.D121211026.alquran.data.models.Surah
+import com.D121211026.alquran.ui.activities.detail.DetailActivity
 import com.D121211026.alquran.ui.theme.SembarangMoDuluTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,7 +52,7 @@ class MainActivity : ComponentActivity() {
         when (quranUiState) {
             is MainUiState.Loading -> Text(text = "Loading Quranic Verses", fontSize = 16.sp)
             is MainUiState.Error -> Text(text = "Error Occurred", fontSize = 16.sp)
-            is MainUiState.Success -> QuranicVersesList(quranUiState.photos)
+            is MainUiState.Success -> QuranicVersesList(quranUiState.surah)
         }
     }
 
@@ -70,7 +72,9 @@ class MainActivity : ComponentActivity() {
                 .padding(16.dp)
                 .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
                 .clickable {
-                    // Handle click action if needed
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra("SURAH", surah)
+                    startActivity(intent)
                 }
         ) {
             Column(
